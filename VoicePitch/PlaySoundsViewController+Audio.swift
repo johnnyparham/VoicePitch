@@ -124,7 +124,8 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
             stopTimer.invalidate()
         }
         
-        configureUI(.NotPlaying)
+        setPlayButtonsState(false)
+        
         
         if let audioPlayerNode = audioPlayerNode {
             audioPlayerNode.stop()
@@ -137,17 +138,12 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
     }
     
     
-    // MARK: UI Functions
+    // MARK: PlayButton Functions
 
-    func configureUI(playState: PlayingState) {
-        switch(playState) {
-        case .Playing:
-            setPlayButtonsEnabled(false)
-            stopButton.enabled = true
-        case .NotPlaying:
-            setPlayButtonsEnabled(true)
-            stopButton.enabled = false
-        }
+    
+    func setPlayButtonsState(isPlaying: Bool) {
+        stopButton.enabled = isPlaying
+        setPlayButtonsEnabled(!isPlaying)
     }
     
     func setPlayButtonsEnabled(enabled: Bool) {
@@ -158,7 +154,8 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         echoButton.enabled = enabled
         reverbButton.enabled = enabled
     }
-
+    
+    
     
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)

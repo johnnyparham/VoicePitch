@@ -45,7 +45,9 @@ class PlaySoundsViewController: UIViewController {
                 playSound(reverb: true)
         }
         
-        configureUI(.Playing)
+//        configureUI(.Playing)
+        setPlayButtonsState(true)
+    
     }
     
     @IBAction func stopButtonPressed(sender: UIButton) {
@@ -64,7 +66,8 @@ class PlaySoundsViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        configureUI(.NotPlaying)
+//        configureUI(.NotPlaying)
+        setPlayButtonsState(false)
     }
 
     override func didReceiveMemoryWarning() {
